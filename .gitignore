@@ -1,3 +1,5 @@
+.DS_Store
+
 # Ignore LaTeX build / render artifacts
 *.aux
 *.log
@@ -27,3 +29,9 @@
 # Other LaTeX intermediates
 *.xdv
 *.pyg
+
+*.bbl-SAVE-ERROR
+*.lol
+*.kilepr
+*.tcp
+*.tps
