@@ -1,0 +1,22 @@
+% Description: Kapitel 1 der Dokumentation
+\ihead{Projektbeschreibung}
+\chapter{Projektbeschreibung}
+
+\section{Einführung in das Projekt XL Fabric}
+Komplexe Netzwerke benötigen eine verlässliche, automatisierte Datenaufbereitung. \textbf{XL Fabric} konvertiert Excel-basierte Day-0-Konfigurationen für Cisco \ac{ACI} in validierte, Terraform-kompatible \ac{YAML}-Dateien. Das Python-Tool setzt auf Pydantic und führt eine zweistufige Validierung (Input und Output) durch, bevor die Daten exportiert werden. Es ist für die Network as Code (\ac{NaC}) \ac{ACI}-Module ausgelegt und konzentriert sich bewusst auf Validierung und Konvertierung – nicht auf die eigentliche \ac{ACI}-Konfiguration.
+
+\section{Ausgangssituation und Problemstellung}
+Day-0-Konfigurationen werden häufig in Excel mit Parametern wie Tenants, \ac{BD}s, Contracts und Application Profiles gepflegt und bilden die Planungsgrundlage. Die manuelle Überführung in Terraform-Variablen ist jedoch fehleranfällig, langsam und intransparent: Ungültige \ac{IP}-Adressen, fehlende Pflichtfelder und inkonsistente Referenzen fallen oft erst beim Deployment auf; Copy-Paste-Fehler und uneinheitliche Konventionen erschweren Wartung und Review; große Umfänge kosten viel Zeit und die Nachvollziehbarkeit von Transformationen ist gering. Eine automatisierte, validierende Konvertierung reduziert diese Risiken deutlich.
+
+\section{Projektziel}
+Ziel ist ein kompaktes Python-Tool, das Excel-Dateien (\texttt{pandas}/\texttt{openpyxl}) einliest, die Eingabedaten mit Pydantic-Modellen validiert, sie in die Struktur der \ac{NaC} \ac{ACI}-Module überführt, das Ergebnis erneut gegen Output-Modelle prüft und schließlich als \ac{YAML} für Terraform exportiert. Pflichtfelder, Typen, Netzparameter (z. B. \ac{IP}, Subnetze, \ac{VLAN}-IDs) und Referenzen werden konsequent geprüft; die Exportstruktur ist direkt für das Deployment nutzbar. Der Fokus liegt \textbf{ausschließlich} auf Validierung und Konvertierung, nicht auf der Ausführung der Terraform-Module.
+
+\section{Abgrenzung}
+Nicht Bestandteil sind die Entwicklung oder Anpassung von Terraform-Modulen, das eigentliche Apply auf die \ac{ACI} Fabric, der Betrieb oder das Monitoring von Infrastrukturen, die Pflege der Excel-Vorlagen, Integrationen jenseits von Cisco \ac{ACI}, Backup/Restore-Funktionen, eine GUI sowie das Management von Terraform State oder Backends. XL Fabric liefert valide Variablen – die Ausführung übernimmt die bestehende Pipeline.
+
+\section{Projektumfeld und Einsatzszenario}
+Das Tool adressiert Rechenzentrumsumgebungen auf Cisco \ac{ACI} und richtet sich an Teams, die \ac{IaC} mit Terraform nutzen. Typischer Ablauf: In der Planung entstehen Excel-basierte Day-0-Daten; XL Fabric validiert und konvertiert sie zu \ac{YAML}; Terraform plant und deployed; Dateien werden versioniert in Git verwaltet. Es integriert sich in bestehende Repositories und CI/CD (z. B. GitLab) sowie die \ac{NaC}-Module (Namespace: netascode) und folgt deren Strukturvorgaben für eine reibungslose Übergabe.
+
+\section{Technologische Grundlagen}
+Eingesetzt werden \textbf{Python 3.11}, \textbf{Pydantic 2.x} für die Validierung, \textbf{pandas}/\textbf{openpyxl} für den Excel-Import, \textbf{PyYAML} für den Export sowie \textbf{Click} für die \ac{CLI}. Die Kombination liefert eine performante, wartbare und erweiterbare Grundlage für die \ac{ACI}-Konfigurationsverwaltung.
+

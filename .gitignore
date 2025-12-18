@@ -1,0 +1,29 @@
+# Ignore LaTeX build / render artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+
+# BibLaTeX / Biber
+*.bbl
+*.bcf
+*.blg
+*-blx.bib
+*.run.xml
+
+# Index / nomenclature / glossaries
+*.idx
+*.ilg
+*.ind
+*.nlo
+*.nls
+
+# Other LaTeX intermediates
+*.xdv
+*.pyg

@@ -1,0 +1,31 @@
+\chapter{Vorgehensweise und Methodik}
+\ihead{Vorgehensweise und Methodik}
+\section{Projektmanagement - Erweiterte Wasserfallmethodik}
+Für die Umsetzung des Projekts wurde das erweiterte Wasserfallmodell gewählt. Dieses Modell baut auf der klassischen Wasserfallmethodik auf, bietet jedoch die Flexibilität, bei Bedarf in frühere Phasen zurückzukehren, um Anpassungen vorzunehmen. Dadurch wird eine höhere Anpassungsfähigkeit ermöglicht, was insbesondere bei komplexeren Projekten von Vorteil ist.
+
+\subsection{Phasen des Projekts}
+Das Projekt folgte sieben aufeinander aufbauenden Phasen mit der Möglichkeit, gezielt in vorherige Schritte zurückzuspringen. Kurz gefasst: In der Anforderungsanalyse (KW 42) wurden Excel-Struktur und Validierungsregeln festgelegt. Es folgten Evaluierung und Technologieauswahl (KW 43) mit der Entscheidung für Pydantic. In Design und Konzeption (KW 44–45) entstanden Architektur, Modelle und Datenflüsse. Die Implementierung startete mit Excel-Import und Input-Validierung (KW 45–47) und setzte sich mit Konvertierung, Output-Validierung und YAML-Export (KW 47–48) fort. Anschließend erfolgten Tests und Qualitätssicherung (KW 48–49). Den Abschluss bildeten Dokumentation und Vorbereitung für den Einsatz (KW 49–51).
+
+\subsection{Zeitlicher Ablauf und Meilensteine}
+Der Zeitplan ist im Gantt-Diagramm (Abbildung~\ref{fig:gantt-diagramm}) zusammengefasst. Wesentliche Meilensteine waren der Abschluss der Input-Validierung (Ende KW 47, 23.11.2025), der Abschluss von Konvertierung und Output-Validierung (Ende KW 48, 30.11.2025) sowie die Abgabe nach der Dokumentationsphase (KW 51).
+
+\begin{figure}[ht]
+
+\includegraphics[width=\textwidth]{bilder/XL Fabric - Projektzeitplan.png}
+\caption{Gantt-Diagramm des Projektzeitplans (Oktober - Dezember 2025)}
+\label{fig:gantt-diagramm}
+\end{figure}
+
+% Evaluierungsinhalte sind in Kapitel 3 (Konzeptionierung) gebündelt, um Wiederholungen zu vermeiden und die logische Reihenfolge (Evaluierung -> Konzeption) sicherzustellen.
+
+\section{Rollen und Verantwortlichkeiten}
+
+Das Projekt wurde von einer Einzelperson umgesetzt, die Planung, Entwicklung, Tests, Dokumentation und Deployment verantwortete. Laufendes Feedback aus dem Umfeld von Netzwerkadministration und DevOps floss iterativ ein.
+
+\section{Werkzeuge und Entwicklungsumgebung}
+
+Zum Einsatz kamen Python 3.11, Pydantic 2.x, pandas und openpyxl für Excel, PyYAML für den Export, Click für die CLI, optional Jinja2 für Templates sowie Git, VS Code und LaTeX als Arbeitsumgebung. Sentry war optional für Fehlernachverfolgung integriert.
+
+\section{Projektzeitraum}
+
+Das Projekt lief von Mitte Oktober bis Mitte Dezember 2025. Alle Phasen von der Anforderungsanalyse bis zur Abgabe am 22. Dezember wurden in rund zehn Wochen abgeschlossen, was eine straffe Planung und fokussierte Umsetzung erforderte.
