@@ -76,7 +76,7 @@
 
 % Zitate, Quotes, Cite
 \usepackage[backend=biber, sorting=nyt, style=ieee-alphabetic, minalphanames=1, maxbibnames=99]{biblatex}
-\addbibresource{literatur.bib}  % Pfad zur Literaturdatenbank
+\addbibresource{bib/literatur.bib}  % Pfad zur Literaturdatenbank
 
 \DeclareLabelalphaTemplate{
   \labelelement{
@@ -127,7 +127,6 @@
 
 % Eigene Befehle
 \newcommand{\uproman}[1]{\uppercase\expandafter{\romannumeral#1}}
-
 
 % Hier in die zweite geschweifte Klammer jeweils
 % die persönlichen Daten und das Thema der Arbeit eintragen:
@@ -247,8 +246,8 @@ Codebeispiel-verzeichnis
 \emergencystretch=2em
   
 \onehalfspacing
-\input{titelblatt.tex}
-%\input{vorwort.tex}
+\input{meta/titelblatt.tex}
+%\input{meta/vorwort.tex}
 %\input{kurzfassung.tex}
 
 
@@ -258,7 +257,7 @@ Codebeispiel-verzeichnis
 \pagestyle{scrheadings} % Ab hier mit Kopf- und Fusszeile
 
 % Abkürzungsverzeichnis einbinden
-\input{abkuerzungsverzeichnis.tex}
+\input{meta/abkuerzungsverzeichnis.tex}
 
 
 \clearpage % Seitenumbruch erzwingen vor Änderung des Nummerierungsstils
@@ -269,17 +268,17 @@ Codebeispiel-verzeichnis
 
 
 \cleardoublepage % Seitenumbruch erzwingen vor Änderung des Nummerierungsstils
-\input{hinweise.tex} % Einleitung
+\input{meta/hinweise.tex} % Einleitung
 
 % Die einzelnen Kapitel
 \cleardoublepage % Seitenumbruch erzwingen vor Änderung des Nummerierungsstils
 \pagenumbering{arabic} % Nummerierung der Seiten ab hier: 1, 2, 3, 4...
-\input{kapitel1.tex}
-\input{kapitel2.tex}
-\input{kapitel3.tex}
-\input{kapitel4.tex}
-\input{kapitel5.tex}
-\input{kapitel6.tex}
+\input{kapitel/kapitel1.tex}
+\input{kapitel/kapitel2.tex}
+\input{kapitel/kapitel3.tex}
+\input{kapitel/kapitel4.tex}
+\input{kapitel/kapitel5.tex}
+\input{kapitel/kapitel6.tex}
 
 
 
@@ -297,27 +296,27 @@ Codebeispiel-verzeichnis
 
 
 % Abbildungsverzeichnis einbinden
-\input{anhang_abbildungsverzeichnis.tex}
+\input{anhang/anhang_abbildungsverzeichnis.tex}
 
 % Tabellenverzeichnis einbinden
-\input{anhang_tabellenverzeichnis.tex}
+\input{anhang/anhang_tabellenverzeichnis.tex}
 
 % Codebeispielverzeichnis einbinden
-\input{anhang_codebeispielverzeichnis.tex}
+\input{anhang/anhang_codebeispielverzeichnis.tex}
 
 
 % Literaturverzeichnis einbinden
-\input{anhang_literaturverzeichnis.tex}
+\input{anhang/anhang_literaturverzeichnis.tex}
 
 
-\input{anhang_tabellen.tex}
-\input{anhang_abbildungen.tex}
-\input{anhang_codebeispiele.tex}
+\input{anhang/anhang_tabellen.tex}
+\input{anhang/anhang_abbildungen.tex}
+\input{anhang/anhang_codebeispiele.tex}
 
 % Thesen
-%\input{thesen.tex}
+%\input{meta/thesen.tex}
 
 % Abschlusserklärung
-\input{abschlusserklaerung.tex}
+\input{meta/abschlusserklaerung.tex}
 \end{document}
 
