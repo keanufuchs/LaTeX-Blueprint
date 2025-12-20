@@ -8,7 +8,7 @@ Die Qualitätssicherung von \textbf{XL Fabric} ist entscheidend für die Zuverl�
 
 \section{Excel-Import und Input-Validierung}
 
-Die ersten Tests konzentrierten sich auf den Excel-Import und die Input-Validierung als erste Qualitätssicherungsschicht. Der Import einer gültigen Bridge Domain Datei erfolgte erwartungsgemäß korrekt, wobei alle Pflichtfelder eingelesen und validiert wurden. Beim Test mit fehlenden Pflichtfeldern zeigte sich die robuste Fehlerbehandlung: Wenn beispielsweise der Tenant-Name fehlte, wurde eine präzise Fehlermeldung mit der korrekten Zeilenangabe in der Excel-Datei ausgegeben. Die \ac{IP}-Adress-Validierung erwies sich als besonders effektiv bei der Erkennung ungültiger Adressen wie \texttt{192.168.1.256/24}, wobei die Fehlermeldung explizit die fehlerhafte Adresse benannte. Ebenso verhielt es sich mit \ac{VLAN}-IDs außerhalb des zulässigen Bereichs von 1 bis 4094: Eine Eingabe von 5000 wurde korrekt als ungültig erkannt und mit entsprechender Meldung abgewiesen. Die Cross-Reference-Validierung, die sicherstellt, dass EPGs auf existierende Bridge Domains verweisen, funktionierte ebenfalls zuverlässig und gab präzise Hinweise auf fehlende Referenzen.
+Die ersten Tests konzentrierten sich auf den Excel-Import und die Input-Validierung als erste Qualitätssicherungsschicht. Der Import einer gültigen Bridge Domain Datei erfolgte erwartungsgemäß korrekt, wobei alle Pflichtfelder eingelesen und validiert wurden. Beim Test mit fehlenden Pflichtfeldern zeigte sich die robuste Fehlerbehandlung: Wenn beispielsweise der Tenant-Name fehlte, wurde eine präzise Fehlermeldung mit der korrekten Zeilenangabe in der Excel-Datei ausgegeben. Die \ac{IP}-Adress-Validierung erwies sich als besonders effektiv bei der Erkennung ungültiger Adressen wie \texttt{192.168.1.256/24}, wobei die Fehlermeldung explizit die fehlerhafte Adresse benannte. Ebenso verhielt es sich mit \ac{VLAN}-IDs außerhalb des zulässigen Bereichs von 1 bis 4094: Eine Eingabe von 5000 wurde korrekt als ungültig erkannt und mit entsprechender Meldung abgewiesen. Die Cross-Reference-Validierung, die sicherstellt, dass \ac{EPG}s auf existierende Bridge Domains verweisen, funktionierte ebenfalls zuverlässig und gab präzise Hinweise auf fehlende Referenzen.
 
 \section{Konvertierung und Output-Validierung}
 
@@ -16,8 +16,30 @@ Die Konvertierungstests überprüften die Transformation der Excel-Daten in die 
 
 \section{\ac{YAML}-Export und Integrationstests}
 
-Der \ac{YAML}-Export wurde sowohl mit einfachen als auch komplexen Szenarien getestet. Bei mehreren Tenants wurde die korrekte Verzeichnisstruktur \texttt{tenants/tenant\_name/} erstellt, und alle Dateien wurden an der richtigen Position abgelegt. Die Behandlung von Sonderzeichen im Namen wurde ebenfalls überprüft: Umlaute und andere UTF-8-Zeichen wurden korrekt kodiert, sodass die generierten \ac{YAML}-Dateien syntaktisch valide blieben. Die Integrationstests mit realen Produktionsdaten waren besonders aufschlussreich: Excel-Dateien mit bis zu 45 Tenants und 680 EPGs wurden erfolgreich verarbeitet, und die generierten \ac{YAML}-Dateien konnten ohne Fehler von Terraform eingelesen und validiert werden. Dies bestätigte nicht nur die funktionale Korrektheit, sondern auch die Skalierbarkeit des Tools für umfangreiche Netzwerkinfrastrukturen. Die Fehlerbehandlung bei fehlenden Dateien funktionierte ebenfalls wie erwartet: Wenn eine Excel-Datei nicht gefunden wurde, erschien eine aussagekräftige Fehlermeldung mit dem korrekten Dateipfad.
+Der \ac{YAML}-Export wurde sowohl mit einfachen als auch komplexen Szenarien getestet. Bei mehreren Tenants wurde die korrekte Verzeichnisstruktur \texttt{tenants/tenant\_name/} erstellt, und alle Dateien wurden an der richtigen Position abgelegt. Die Behandlung von Sonderzeichen im Namen wurde ebenfalls überprüft: Umlaute und andere \ac{UTF}-8-Zeichen wurden korrekt kodiert, sodass die generierten \ac{YAML}-Dateien syntaktisch valide blieben. Die Integrationstests mit realen Produktionsdaten waren besonders aufschlussreich: Excel-Dateien mit bis zu 45 Tenants und 680 \ac{EPG}s wurden erfolgreich verarbeitet, und die generierten \ac{YAML}-Dateien konnten ohne Fehler von Terraform eingelesen und validiert werden. Dies bestätigte nicht nur die funktionale Korrektheit, sondern auch die Skalierbarkeit des Tools für umfangreiche Netzwerkinfrastrukturen. Die Fehlerbehandlung bei fehlenden Dateien funktionierte ebenfalls wie erwartet: Wenn eine Excel-Datei nicht gefunden wurde, erschien eine aussagekräftige Fehlermeldung mit dem korrekten Dateipfad.
 
 \section{Zusammenfassung}
 
-Die Qualitätssicherung bestätigt durch insgesamt zwölf systematische Tests, dass \textbf{XL Fabric} den Anforderungen an ein produktionsreifes Tool entspricht. Besonders hervorzuheben ist die robuste Input-Validierung mit detaillierten Fehlermeldungen, die präzise auf die Position in der Excel-Datei verweisen und damit die Fehlerkorrektur erheblich erleichtern. Die Konvertierung von Excel-Format zu Terraform-Struktur erfolgt zuverlässig und berücksichtigt alle notwendigen Transformationen wie Field-Aliasing und Datentyp-Mapping. Die Output-Validierung als zweite Sicherheitsebene gewährleistet die Datenintegrität und verhindert die Generierung inkonsistenter Konfigurationen. Die erfolgreichen Integrationstests mit bis zu 680 EPGs demonstrieren die Praxistauglichkeit und Skalierbarkeit des Tools. Eine detaillierte Übersicht aller zwölf durchgeführten Tests mit erwarteten und tatsächlichen Ergebnissen findet sich in Tabelle~\ref{tabelle:qualitaetssicherung-tabelle} im Anhang.
+Die Qualitätssicherung bestätigt durch insgesamt zwölf systematische Tests, dass \textbf{XL Fabric} den Anforderungen an ein produktionsreifes Tool entspricht. Die Testergebnisse zeigen eine vollständige Abdeckung der kritischen Komponenten:
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|l|c|c|}
+        \hline
+        \textbf{Testkategorie} & \textbf{Anzahl Tests} & \textbf{Status} \\
+        \hline
+        Excel-Import & 2 & Erfolgreich \\
+        Input-Validierung & 3 & Erfolgreich \\
+        Konvertierung & 2 & Erfolgreich \\
+        Output-Validierung & 1 & Erfolgreich \\
+        YAML-Export & 2 & Erfolgreich \\
+        Integration & 2 & Erfolgreich \\
+        \hline
+        \textbf{Gesamt} & \textbf{12} & \textbf{100\% Erfolgreich} \\
+        \hline
+    \end{tabular}
+    \caption{Zusammenfassung der Testergebnisse (Details siehe Anhang, Tabelle~\ref{tabelle:qualitaetssicherung-tabelle})}
+    \label{tab:qa_summary}
+\end{table}
+
+Besonders hervorzuheben ist die robuste Input-Validierung mit detaillierten Fehlermeldungen, die präzise auf die Position in der Excel-Datei verweisen und damit die Fehlerkorrektur erheblich erleichtern. Die Konvertierung von Excel-Format zu Terraform-Struktur erfolgt zuverlässig und berücksichtigt alle notwendigen Transformationen wie Field-Aliasing und Datentyp-Mapping. Die Output-Validierung als zweite Sicherheitsebene gewährleistet die Datenintegrität und verhindert die Generierung inkonsistenter Konfigurationen. Die erfolgreichen Integrationstests mit bis zu 680 \ac{EPG}s demonstrieren die Praxistauglichkeit und Skalierbarkeit des Tools. Eine detaillierte Übersicht aller zwölf durchgeführten Tests mit erwarteten und tatsächlichen Ergebnissen findet sich in Tabelle~\ref{tabelle:qualitaetssicherung-tabelle} im Anhang.

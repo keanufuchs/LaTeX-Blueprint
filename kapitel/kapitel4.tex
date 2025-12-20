@@ -5,6 +5,16 @@
 
 Die Implementierung von \textbf{XL Fabric} setzt die in Kapitel~\ref{chap:konzeptionierung} beschriebene Architektur konsequent um. Die Kernkomponenten – \ac{CLI} mit Click, Excel-Parser mit pandas/openpyxl, zweistufige Pydantic-Validierung, Konvertierungslogik in \texttt{XltoAciConfig}, \ac{YAML}-Export mit PyYAML sowie zentrales Logging – arbeiten in einer klaren Pipeline zusammen und stellen durch die zweifache Validierung sowohl die Qualität der Eingabedaten als auch die Terraform-Konformität der Ausgabe sicher.
 
+Zur Verdeutlichung der Softwarearchitektur zeigt Abbildung~\ref{fig:klassendiagramm} die wichtigsten Klassen und ihre Beziehungen:
+
+\begin{figure}[ht]
+    \centering
+    % HIER MERMAID DIAGRAMM EINFÜGEN
+    \includegraphics[width=\textwidth]{bilder/klassendiagramm.png}
+    \caption{Vereinfachtes Klassendiagramm der Kernkomponenten}
+    \label{fig:klassendiagramm}
+\end{figure}
+
 \section{Command-Line-Interface}
 \label{sec:cli-implementierung}
 
@@ -33,7 +43,7 @@ Die zweite Validierungsebene nutzt Pydantic-Modelle unter \path{xl_fabric.models
 \section{\ac{YAML}-Export}
 \label{sec:yaml-export-impl}
 
-Der \texttt{AciConfigExporter} erzeugt strukturierte \ac{YAML}-Dateien mithilfe des Moduls PyYAML, wobei die Organisation nach Geltungsbereich erfolgt: Fabric-weite Konfigurationen wie \ac{VLAN}-Pools, Domains, Interface Policies und Attachment Entity Profiles werden unter \texttt{files/output/terraform/fabric/} abgelegt, während Tenant-spezifische Objekte wie \ac{VRF}s, Bridge Domains, Application Profiles, \ac{EPG}s, Contracts und Filter pro Tenant in separaten Verzeichnissen unter \texttt{files/output/terraform/tenants/[tenant]/} organisiert werden. Die Formatierung folgt den YAML-Spezifikationen für konsistente Einrückung (2 Leerzeichen), Block-Style für Listen, leere Strings statt \texttt{null}-Werten und UTF-8-Encoding \cite[vgl.][]{pyyamlorg_pyyamlorgwikipyyamldocumentation_2020} – vor jedem Export wird das Output-Verzeichnis bereinigt, wobei \texttt{.gitkeep}-Dateien erhalten bleiben (vollständige Implementierung siehe Anhang, Codebeispiel~\ref{code:yaml_export}).
+Der \texttt{AciConfigExporter} erzeugt strukturierte \ac{YAML}-Dateien mithilfe des Moduls PyYAML, wobei die Organisation nach Geltungsbereich erfolgt: Fabric-weite Konfigurationen wie \ac{VLAN}-Pools, Domains, Interface Policies und Attachment Entity Profiles werden unter \texttt{files/output/terraform/fabric/} abgelegt, während Tenant-spezifische Objekte wie \ac{VRF}s, Bridge Domains, Application Profiles, \ac{EPG}s, Contracts und Filter pro Tenant in separaten Verzeichnissen unter \texttt{files/output/terraform/tenants/[tenant]/} organisiert werden. Die Formatierung folgt den YAML-Spezifikationen für konsistente Einrückung (2 Leerzeichen), Block-Style für Listen, leere Strings statt \texttt{null}-Werten und \ac{UTF}-8-Encoding \cite[vgl.][]{pyyamlorg_pyyamlorgwikipyyamldocumentation_2020} – vor jedem Export wird das Output-Verzeichnis bereinigt, wobei \texttt{.gitkeep}-Dateien erhalten bleiben (vollständige Implementierung siehe Anhang, Codebeispiel~\ref{code:yaml_export}).
 
 \section{Logging und Fehlerbehandlung}
 \label{sec:logging-impl}

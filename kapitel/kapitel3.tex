@@ -7,15 +7,15 @@
 
 Für die Implementierung von \textbf{XL Fabric} wurden verschiedene Python-Bibliotheken und Frameworks evaluiert, um die bestmögliche Lösung für die Anforderungen des Projekts zu finden. Die Evaluierung konzentrierte sich auf zwei Hauptbereiche: Datenvalidierung und Excel-Verarbeitung.
 
-\subsection{Datenvalidierungs-Frameworks}
-Für die Datenvalidierung wurden Pydantic, Marshmallow sowie Cerberus betrachtet. Gewählt wurde \textbf{Pydantic V2}, da es moderne Typisierung und automatische Konvertierung bietet, in Benchmarks sehr performant ist, umfangreiche Validatoren mitbringt und präzise Fehlermeldungen sowie JSON-Schema-Generierung liefert \cite[vgl.][]{pydantic_welcome_2025}.
+    \subsection{Datenvalidierungs-Frameworks}
+    Für die Datenvalidierung wurden Pydantic, Marshmallow sowie Cerberus betrachtet. Gewählt wurde \textbf{Pydantic V2}, da es moderne Typisierung und automatische Konvertierung bietet, in Benchmarks sehr performant ist, umfangreiche Validatoren mitbringt und präzise Fehlermeldungen sowie \ac{JSON}-Schema-Generierung liefert \cite[vgl.][]{pydantic_welcome_2025}.
 
 \subsection{Excel-Verarbeitungs-Bibliotheken}
 Für den Excel-Import standen openpyxl, pandas+openpyxl und xlrd zur Wahl. Entscheidend war \textbf{pandas} mit \textbf{openpyxl}: DataFrames erlauben effiziente Transformationen, Multi-Sheet-Verarbeitung ist unkompliziert und die Bibliotheken sind breit etabliert \cite[vgl.][]{numfocus_inc_pandas_2029, eric_gazoni_openpyxl_2024}.
 
 \section{Evaluierung der Alternativen: Nutzwertanalyse}
 
-Zur Entscheidungsfindung wurde eine pragmatische Nutzwertbetrachtung durchgeführt. Bewertet wurden fünf Kriterien mit praxisnahen Gewichtungen. Die Skala der Einzelbewertungen reicht von 1 (schwach) bis 5 (sehr gut). Ausschlaggebend waren Typunterstützung, Performance, Validierungsumfang, Fehlertransparenz und Dokumentation.
+    Zur Entscheidungsfindung wurde eine pragmatische Nutzwertbetrachtung durchgeführt. Bewertet wurden fünf Kriterien mit praxisnahen Gewichtungen. Die Skala der Einzelbewertungen reicht von 1 (schwach) bis 5 (sehr gut). Ausschlaggebend waren Typunterstützung, Performance, Validierungsumfang, Fehlertransparenz und Dokumentation (siehe Tabelle~\ref{tabelle:nutzwertanalyse_validierung_konzeption}).
 
 \begin{table}[ht]
 	\begin{center}
@@ -45,7 +45,29 @@ Das Ergebnis zeigt einen deutlichen Vorteil für Pydantic – insbesondere durch
 \section{Projektordnerstruktur}
 \label{sec:projektordnerstruktur}
 
-Die Struktur von \textbf{XL Fabric} folgt einer klaren Trennung nach Verantwortlichkeiten: Im Hauptpaket \texttt{xl\_fabric/} liegen die Pydantic-Modelle getrennt nach Input (\texttt{models/xlsx/}) und Output (\texttt{models/aciconfig/}), die Konvertierungslogik (\texttt{converter/}), der Excel-Parser (\texttt{xls.py}), die \ac{CLI} (\texttt{cli.py}) und der \ac{YAML}-Export (\texttt{export.py}). Das Verzeichnis \texttt{files/} enthält die Arbeitsordner für Excel-Input und \ac{YAML}-Output, während unter \texttt{config/} die Logging- und Projektkonfiguration abgelegt ist. Tests befinden sich zentral unter \texttt{tests/}, Abhängigkeiten werden über \texttt{requirements.txt} verwaltet.
+Die Struktur von \textbf{XL Fabric} folgt einer klaren Trennung nach Verantwortlichkeiten. Der folgende Verzeichnisbaum illustriert die Organisation der Projektdateien:
+
+\begin{verbatim}
+xl-fabric/
+|-- config/              # Konfigurationsdateien (Logging, Projekt)
+|-- files/
+|   |-- input/           # Arbeitsordner fuer Excel-Dateien
+|   \-- output/          # Arbeitsordner fuer generierte YAML-Dateien
+|-- tests/               # Unit- und Integrationstests
+|-- xl_fabric/           # Hauptpaket (Source Code)
+|   |-- converter/       # Konvertierungslogik
+|   |-- models/          # Pydantic-Modelle (Validierung)
+|   |   |-- aciconfig/   # Output-Modelle (Terraform-Struktur)
+|   |   \-- xlsx/        # Input-Modelle (Excel-Struktur)
+|   |-- utils/           # Hilfsfunktionen
+|   |-- cli.py           # Command Line Interface
+|   |-- export.py        # YAML-Export-Logik
+|   \-- xls.py           # Excel-Parser
+|-- main.py              # Einstiegspunkt
+\-- requirements.txt     # Python-Abhaengigkeiten
+\end{verbatim}
+
+Im Hauptpaket \texttt{xl\_fabric/} liegen die Pydantic-Modelle getrennt nach Input (\texttt{models/xlsx/}) und Output (\texttt{models/aciconfig/}), die Konvertierungslogik (\texttt{converter/}), der Excel-Parser (\texttt{xls.py}), die \ac{CLI} (\texttt{cli.py}) und der \ac{YAML}-Export (\texttt{export.py}). Das Verzeichnis \texttt{files/} enthält die Arbeitsordner für Excel-Input und \ac{YAML}-Output, während unter \texttt{config/} die Logging- und Projektkonfiguration abgelegt ist. Tests befinden sich zentral unter \texttt{tests/}, Abhängigkeiten werden über \texttt{requirements.txt} verwaltet.
 
 \section{Systemarchitektur}
 \label{sec:systemarchitektur}
@@ -55,16 +77,21 @@ Die Struktur von \textbf{XL Fabric} folgt einer klaren Trennung nach Verantwortl
 \section{Systemablauf}
 \label{sec:systemablauf}
 
-Um den Gesamtprozess und die Architektur von \textbf{XL Fabric} besser zu veranschaulichen, zeigt das folgende Ablaufdiagramm den Datenfluss vom Excel-Import bis zum YAML-Export. Abbildung~\ref{fig:ablaufdiagramm-kompakt} beschreibt die zentrale Verarbeitungskette in vereinfachter Form (das ausführliche Ablaufdiagramm mit allen Fehlerbehandlungen findet sich im Anhang, Abbildung~\ref{fig:ablaufdiagramm-detail}):
+    \subsection{Systemablauf}
+    \label{sec:systemablauf}
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=\textwidth]{bilder/Vereinfachtes Ablaufdiagramm.png}
-\caption{Vereinfachtes Ablaufdiagramm der Hauptverarbeitungsschritte}
-\label{fig:ablaufdiagramm-kompakt}
-\end{figure}
+    Um den Gesamtprozess und die Architektur von \textbf{XL Fabric} besser zu veranschaulichen, zeigt das folgende Ablaufdiagramm den Datenfluss vom Excel-Import bis zum YAML-Export. Abbildung~\ref{fig:ablaufdiagramm-kompakt} beschreibt die zentrale Verarbeitungskette in vereinfachter Form (siehe Anhang, Abbildung~\ref{fig:ablaufdiagramm-detail}):
 
-\subsection{Excel-Import und Parsing}
+    \begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{bilder/Vereinfachtes Ablaufdiagramm.png}
+    \caption{Vereinfachtes Ablaufdiagramm der Hauptverarbeitungsschritte}
+    \label{fig:ablaufdiagramm-kompakt}
+    \end{figure}
+
+    Ergänzend zur Datenfluss-Sicht visualisiert das Sequenzdiagramm (siehe Anhang, Abbildung~\ref{fig:sequenzdiagramm}) die zeitliche Abfolge und Interaktion der Komponenten während des Validierungsprozesses.
+
+    \subsection{Excel-Import und Parsing}
 
 Der Prozess startet mit dem Einlesen der Excel-Dateien aus \texttt{files/input/}. \texttt{parse\_excelfile} lädt per openpyxl die Workbook-Struktur, pandas übernimmt die Datenmanipulation je Worksheet. Kopfzeilen werden erkannt, leere Zeilen und Spalten bereinigt, Datentypen automatisch interpretiert; mehrere Dateien können nacheinander verarbeitet und zusammengeführt werden.
 

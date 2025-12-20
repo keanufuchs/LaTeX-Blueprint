@@ -15,13 +15,13 @@
         2 & Excel-Import mit fehlenden Pflichtfeldern (Tenant-Name) & Fehlermeldung: ``Pflichtfeld 'TenantName' fehlt'' & Fehlermeldung angezeigt mit korrekter Zeilenangabe \\\hline
         3 & Input-Validierung mit ungültiger \ac{IP}-Adresse & Fehlermeldung: ``Ungültige \ac{IP}-Adresse'' & Fehlermeldung angezeigt: ``192.168.1.256/24 ist keine gültige \ac{IP}-Adresse'' \\\hline
         4 & Input-Validierung mit ungültiger \ac{VLAN}-ID (5000) & Fehlermeldung: ``\ac{VLAN}-ID außerhalb des Bereichs 1-4094'' & Fehlermeldung angezeigt: ``\ac{VLAN}-ID 5000 ungültig'' \\\hline
-        5 & Cross-Reference-Validierung: EPG ohne zugehöriges BD & Fehlermeldung: ``Bridge Domain nicht gefunden'' & Fehlermeldung angezeigt mit Referenz auf fehlendes BD \\\hline
+        5 & Cross-Reference-Validierung: \ac{EPG} ohne zugehöriges \ac{BD} & Fehlermeldung: ``Bridge Domain nicht gefunden'' & Fehlermeldung angezeigt mit Referenz auf fehlendes \ac{BD} \\\hline
         6 & Konvertierung von Bridge Domain zu Terraform-Struktur & \ac{YAML}-Datei mit korrekter Terraform-Struktur wird generiert & \ac{YAML}-Datei erfolgreich generiert, Struktur korrekt \\\hline
-        7 & Konvertierung von EPG mit Port Bindings & Port Bindings werden korrekt in \ac{YAML} übertragen & Port Bindings vollständig in \ac{YAML} vorhanden \\\hline
+        7 & Konvertierung von \ac{EPG} mit Port Bindings & Port Bindings werden korrekt in \ac{YAML} übertragen & Port Bindings vollständig in \ac{YAML} vorhanden \\\hline
         8 & Output-Validierung mit fehlenden Metadaten & Fehlermeldung: ``Erforderliche Metadaten fehlen'' & Fehlermeldung angezeigt, Generierung abgebrochen \\\hline
         9 & \ac{YAML}-Export mit mehreren Tenants & Verzeichnisstruktur \texttt{tenants/tenant\_name/} wird korrekt erstellt & Verzeichnisstruktur korrekt, alle Dateien erstellt \\\hline
-        10 & \ac{YAML}-Export mit Sonderzeichen im Namen & Sonderzeichen werden korrekt in UTF-8 kodiert & Sonderzeichen korrekt kodiert, \ac{YAML} syntaktisch valide \\\hline
-        11 & Integrationstests mit 45 Tenants und 680 EPGs & Alle Objekte werden verarbeitet, \ac{YAML} ist Terraform-kompatibel & Verarbeitung erfolgreich, Terraform validiert ohne Fehler \\\hline
+        10 & \ac{YAML}-Export mit Sonderzeichen im Namen & Sonderzeichen werden korrekt in \ac{UTF}-8 kodiert & Sonderzeichen korrekt kodiert, \ac{YAML} syntaktisch valide \\\hline
+        11 & Integrationstests mit 45 Tenants und 680 \ac{EPG}s & Alle Objekte werden verarbeitet, \ac{YAML} ist Terraform-kompatibel & Verarbeitung erfolgreich, Terraform validiert ohne Fehler \\\hline
         12 & Fehlerbehandlung: Excel-Datei nicht gefunden & Fehlermeldung: ``Datei nicht gefunden'' & Fehlermeldung angezeigt mit korrektem Dateipfad \\\hline
         \hline
     \end{tabular}

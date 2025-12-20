@@ -152,14 +152,15 @@
    pdfborderstyle={/S/U/W 1} % Unterstrichen (Underline) mit 1pt Breite
 }
 
-% Abkürzungsverzeichnis beeinflussen. Hier nichts ändern!
-\usepackage[intoc]{nomencl}
-  \AtBeginDocument{\setlength{\nomlabelwidth}{.25\columnwidth}}
-  \let\abbrev\nomenclature
-  \renewcommand{\nomname}{Abkürzungsverzeichnis und Formelzeichen}
-  \renewcommand{\nomlabel}[1]{#1 \dotfill}
-  \setlength{\nomitemsep}{-\parsep}
-  \makenomenclature
+% Abkürzungsverzeichnis beeinflussen.
+%\usepackage[intoc]{nomencl}
+%  \AtBeginDocument{\setlength{\nomlabelwidth}{.25\columnwidth}}
+%  \let\abbrev\nomenclature
+%  \renewcommand{\nomname}{Abkürzungsverzeichnis und Formelzeichen}
+%  \renewcommand{\nomlabel}[1]{#1 \dotfill}
+%  \setlength{\nomitemsep}{-\parsep}
+%  \makenomenclature
+
 
 \usepackage[normalem]{ulem}
   \newcommand{\markup}[1]{\textbf{#1}}
@@ -237,6 +238,12 @@ Codebeispiel-verzeichnis
 
 
 
+% Anpassung der Abstände bei Kapitelüberschriften
+\RedeclareSectionCommand[
+  beforeskip=-10pt, % Abstand über der Überschrift (Standard ca. 50pt)
+  afterskip=20pt    % Abstand unter der Überschrift
+]{chapter}
+
 \begin{document}
 % Verhindere, dass \cleardoublepage Leerseiten erzeugt (insb. bei open=any)
 \makeatletter
@@ -248,7 +255,7 @@ Codebeispiel-verzeichnis
 \onehalfspacing
 \input{meta/titelblatt.tex}
 %\input{meta/vorwort.tex}
-%\input{kurzfassung.tex}
+\input{meta/kurzfassung.tex}
 
 
 % Inhaltsverzeichnis
@@ -268,7 +275,7 @@ Codebeispiel-verzeichnis
 
 
 \cleardoublepage % Seitenumbruch erzwingen vor Änderung des Nummerierungsstils
-\input{meta/hinweise.tex} % Einleitung
+% \input{meta/hinweise.tex} % Einleitung -> Verschoben nach oben als Kurzfassung
 
 % Die einzelnen Kapitel
 \cleardoublepage % Seitenumbruch erzwingen vor Änderung des Nummerierungsstils
