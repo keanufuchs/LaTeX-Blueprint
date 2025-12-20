@@ -71,7 +71,7 @@
 \usepackage{xurl} % Besserer Zeilenumbruch für lange URLs und Pfade
 
 \usepackage{verbatim} % Ermöglicht die Verwendung der verbatim-Umgebung
-\usepackage{fontspec}
+%\usepackage{fontspec}
 \usepackage[htt]{hyphenat} % Erlaubt Silbentrennung in \texttt{} (Typewriter)
 
 % Zitate, Quotes, Cite
@@ -114,7 +114,8 @@
   breakatwhitespace=true,
   tabsize=3,
   captionpos=b,      % Position der Beschriftung (bottom)
-  escapeinside={(*@}{@*)} % Ermöglicht LaTeX-Befehle innerhalb von Code
+  escapeinside={(*@}{@*)}, % Ermöglicht LaTeX-Befehle innerhalb von Code
+  literate={ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1 {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1 {ß}{{\ss}}1
 }
 
 % Umbenennung von "Listing" zu "Codebeispiel"
