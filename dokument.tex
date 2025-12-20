@@ -300,9 +300,15 @@ Codebeispiel-verzeichnis
 
 
 
-
+\clearpage
 
 % Abbildungsverzeichnis einbinden
+\appendix
+% Alphamerische Seitennummerierung (A-1, A-2...) sorgt für maximale Klarheit und Trennung vom Hauptteil
+\pagenumbering{Alph}
+\renewcommand{\thepage}{A-\arabic{page}}
+\setcounter{page}{1}
+
 \input{anhang/anhang_abbildungsverzeichnis.tex}
 
 % Tabellenverzeichnis einbinden
