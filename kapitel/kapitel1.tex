@@ -1,22 +1,28 @@
-% Description: Kapitel 1 der Dokumentation
-\ihead{Projektbeschreibung}
-\chapter{Projektbeschreibung}
+\ihead{Anleitung zur Vorlage}
+\chapter{Anleitung zur Verwendung dieser Vorlage}
 
-\section{Einführung in das Projekt XL Fabric}
-Komplexe Netzwerke benötigen eine verlässliche, automatisierte Datenaufbereitung. \textbf{XL Fabric} konvertiert Excel-basierte Day-0-Konfigurationen für Cisco \acf{ACI} in validierte, Terraform-kompatible \acf{YAML}-Dateien. Das Python-Tool setzt auf Pydantic und führt eine zweistufige Validierung (Input und Output) durch, bevor die Daten exportiert werden. Es ist für die \ac{NaC} \ac{ACI}-Module ausgelegt und konzentriert sich bewusst auf Validierung und Konvertierung – nicht auf die eigentliche \ac{ACI}-Konfiguration.
+Diese LaTeX-Vorlage dient als Basis für wissenschaftliche Hausarbeiten, Bachelor- und Masterarbeiten. Sie ist so konfiguriert, dass sie den typischen Anforderungen entspricht.
 
-\section{Ausgangssituation und Problemstellung}
-Day-0-Konfigurationen werden häufig in Excel mit Parametern wie Tenants, \ac{BD}s, Contracts und Application Profiles gepflegt und bilden die Planungsgrundlage. Die manuelle Überführung in Terraform-Variablen ist jedoch fehleranfällig, langsam und intransparent: Ungültige \ac{IP}-Adressen, fehlende Pflichtfelder und inkonsistente Referenzen fallen oft erst beim Deployment auf; Copy-Paste-Fehler und uneinheitliche Konventionen erschweren Wartung und Review; große Umfänge kosten viel Zeit und die Nachvollziehbarkeit von Transformationen ist gering. Eine automatisierte, validierende Konvertierung reduziert diese Risiken deutlich.
+\section{Struktur der Vorlage}
+Die Vorlage ist modular aufgebaut, um die Übersichtlichkeit zu wahren:
 
-\section{Projektziel}
-Ziel ist ein kompaktes Python-Tool, das Excel-Dateien (\texttt{pandas}/\texttt{openpyxl}) einliest, die Eingabedaten mit Pydantic-Modellen validiert, sie in die Struktur der \ac{NaC} \ac{ACI}-Module überführt, das Ergebnis erneut gegen Output-Modelle prüft und schließlich als \ac{YAML} für Terraform exportiert. Pflichtfelder, Typen, Netzparameter (z. B. \ac{IP}, Subnetze, \ac{VLAN}-IDs) und Referenzen werden konsequent geprüft; die Exportstruktur ist direkt für das Deployment nutzbar. Der Fokus liegt \textbf{ausschließlich} auf Validierung und Konvertierung, nicht auf der Ausführung der Terraform-Module.
+\begin{itemize}
+    \item \texttt{dokument.tex}: Die Hauptdatei. Hier werden alle anderen Dateien eingebunden und globale Einstellungen (Metadaten) vorgenommen.
+    \item \texttt{meta/}: Enthält Dateien für den Vorspann (Titelblatt, Abstract, Verzeichnisse).
+    \item \texttt{kapitel/}: Hier liegen die eigentlichen Inhalte der Arbeit, unterteilt in Kapitel.
+    \item \texttt{anhang/}: Dateien für den Anhang (zusätzliche Abbildungen, Tabellen, Code).
+    \item \texttt{bib/}: Enthält die Literaturdatenbank (\texttt{literatur.bib}).
+    \item \texttt{bilder/}: Speicherort für alle Grafiken und Bilder.
+\end{itemize}
 
-\section{Abgrenzung}
-Nicht Bestandteil sind die Entwicklung oder Anpassung von Terraform-Modulen, das eigentliche Apply auf die \ac{ACI} Fabric, der Betrieb oder das Monitoring von Infrastrukturen, die Pflege der Excel-Vorlagen, Integrationen jenseits von Cisco \ac{ACI}, Backup/Restore-Funktionen, eine \ac{GUI} sowie das Management von Terraform State oder Backends. XL Fabric liefert valide Variablen – die Ausführung übernimmt die bestehende Pipeline.
+\section{Erste Schritte}
+\begin{enumerate}
+    \item Öffnen Sie die Datei \texttt{dokument.tex}.
+    \item Passen Sie die Metadaten im oberen Bereich an (Autor, Titel, Matrikelnummer, etc.).
+    \item Bearbeiten Sie die Dateien im Ordner \texttt{meta/} (z.B. \texttt{kurzfassung.tex}, \texttt{abkuerzungsverzeichnis.tex}).
+    \item Schreiben Sie Ihren Text in den Dateien unter \texttt{kapitel/}. Sie können weitere Kapitel-Dateien anlegen und diese in \texttt{dokument.tex} mit \texttt{\textbackslash input\{kapitel/dateiname\}} einbinden.
+    \item Führen Sie das Kompilieren durch (in der Regel \texttt{pdflatex} -> \texttt{biber} -> \texttt{pdflatex} -> \texttt{pdflatex}).
+\end{enumerate}
 
-\section{Projektumfeld und Einsatzszenario}
-Das Tool adressiert Rechenzentrumsumgebungen auf Cisco \ac{ACI} und richtet sich an Teams, die \ac{IaC} mit Terraform nutzen. Typischer Ablauf: In der Planung entstehen Excel-basierte Day-0-Daten; XL Fabric validiert und konvertiert sie zu \ac{YAML}; Terraform plant und deployed; Dateien werden versioniert in Git verwaltet. Es integriert sich in bestehende Repositories und \ac{CI/CD} (z. B. GitLab) sowie die \ac{NaC}-Module (Namespace: netascode) und folgt deren Strukturvorgaben für eine reibungslose Übergabe.
-
-\section{Technologische Grundlagen}
-Eingesetzt werden \textbf{Python 3.11}, \textbf{Pydantic 2.x} für die Validierung, \textbf{pandas}/\textbf{openpyxl} für den Excel-Import, \textbf{PyYAML} für den Export sowie \textbf{Click} für die \acf{CLI}. Die Kombination liefert eine performante, wartbare und erweiterbare Grundlage für die \ac{ACI}-Konfigurationsverwaltung.
-
+\section{Vorgaben}
+Beachten Sie bitte die Datei \texttt{VORGABEN.md} im Hauptverzeichnis. Sie enthält detaillierte Hinweise zur inhaltlichen Struktur der Arbeit, orientiert am Referenzprojekt.

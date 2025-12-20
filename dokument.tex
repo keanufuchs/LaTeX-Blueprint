@@ -130,37 +130,25 @@
 
 % Hier in die zweite geschweifte Klammer jeweils
 % die persönlichen Daten und das Thema der Arbeit eintragen:
-\newcommand{\artderausarbeitung}{Praxistransferprojekt V}
-\newcommand{\namedesautors}{Keanu Fuchs}
-\newcommand{\matrikelnummer}{653232018}
-\newcommand{\themaderarbeit}{XL Fabric: Entwicklung eines Python-Tools zur Validierung und Konvertierung von Cisco ACI Konfigurationsdaten}
-\newcommand{\fachbereich}{Informatik \& Digitalisierung}
-\newcommand{\studiengang}{Informatik B.Sc.}
-\newcommand{\bechtlebonn}{Bechtle IT-Systemhaus Bonn/Köln} 
-\newcommand{\dateToday}{
-  \the\day.\,\ifnum\month<10 0\the\month\else\the\month\fi.\,\the\year
-}
+\newcommand{\artderausarbeitung}{Art der Ausarbeitung}
+\newcommand{\namedesautors}{Max Mustermann}
+\newcommand{\matrikelnummer}{1234567}
+\newcommand{\themaderarbeit}{Titel der Arbeit}
+\newcommand{\fachbereich}{Fachbereich}
+\newcommand{\studiengang}{Studiengang}
+\newcommand{\praxispartner}{Musterfirma GmbH} 
+\newcommand{\ort}{Musterstadt}
 
 % PDF Metadaten definieren  
 \hypersetup{
    pdftitle={\themaderarbeit},
    pdfsubject={\artderausarbeitung},
    pdfauthor={\namedesautors},
-   pdfkeywords={\artderausarbeitung; TU-Ilmenau; Kommunikationsnetze;},
+   pdfkeywords={\artderausarbeitung; LaTeX; Vorlage;},
    colorlinks=false,       % Keine farbigen Links
    allbordercolors={0 0 0},% Alle Umrandungen schwarz
    pdfborderstyle={/S/U/W 1} % Unterstrichen (Underline) mit 1pt Breite
 }
-
-% Abkürzungsverzeichnis beeinflussen.
-%\usepackage[intoc]{nomencl}
-%  \AtBeginDocument{\setlength{\nomlabelwidth}{.25\columnwidth}}
-%  \let\abbrev\nomenclature
-%  \renewcommand{\nomname}{Abkürzungsverzeichnis und Formelzeichen}
-%  \renewcommand{\nomlabel}[1]{#1 \dotfill}
-%  \setlength{\nomitemsep}{-\parsep}
-%  \makenomenclature
-
 
 \usepackage[normalem]{ulem}
   \newcommand{\markup}[1]{\textbf{#1}}
@@ -203,10 +191,6 @@
 \framebox[\textwidth][l]{\usebox{\inhalt}}}
 
 % Trennvorschläge für falsch getrennte Wörter.
-% Wird häufig bei eingedeutschen Wörtern benötigt, da LaTeX hierbei
-% gerne falsch trennt. Alternativ kann auch im Fliesstext ein
-% Trennvorschlag per "\-" hinterlegt werden, bspw.:
-% Die Hard\-ware besteht aus A und B.
 \hyphenation{
 Hard-ware
 Daten-verarbeitungs-prozess
@@ -255,7 +239,7 @@ Codebeispiel-verzeichnis
 \onehalfspacing
 \input{meta/titelblatt.tex}
 %\input{meta/vorwort.tex}
-\input{meta/kurzfassung.tex}
+%\input{meta/kurzfassung.tex}
 
 
 % Inhaltsverzeichnis
@@ -275,29 +259,17 @@ Codebeispiel-verzeichnis
 
 
 \cleardoublepage % Seitenumbruch erzwingen vor Änderung des Nummerierungsstils
-% \input{meta/hinweise.tex} % Einleitung -> Verschoben nach oben als Kurzfassung
+% \input{meta/hinweise.tex} % Einleitung
 
 % Die einzelnen Kapitel
 \cleardoublepage % Seitenumbruch erzwingen vor Änderung des Nummerierungsstils
 \pagenumbering{arabic} % Nummerierung der Seiten ab hier: 1, 2, 3, 4...
 \input{kapitel/kapitel1.tex}
 \input{kapitel/kapitel2.tex}
-\input{kapitel/kapitel3.tex}
-\input{kapitel/kapitel4.tex}
-\input{kapitel/kapitel5.tex}
-\input{kapitel/kapitel6.tex}
-
-
-
-
-
-%\input{anhang_protokoll.tex}
-%\input{anhang_messwerte.tex}
-
-%\chapter{Software und Konfigurationsdateien}
-%Beispieltext
-
-
+%\input{kapitel/kapitel3.tex}
+%\input{kapitel/kapitel4.tex}
+%\input{kapitel/kapitel5.tex}
+%\input{kapitel/kapitel6.tex}
 
 
 \clearpage
@@ -332,4 +304,3 @@ Codebeispiel-verzeichnis
 % Abschlusserklärung
 \input{meta/abschlusserklaerung.tex}
 \end{document}
-
