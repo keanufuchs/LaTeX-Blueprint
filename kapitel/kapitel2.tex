@@ -81,7 +81,7 @@ Mermaid-Diagramme koennen als Quelltext dokumentiert und als Diagramm dargestell
 
         \draw[line] (start) -- (check);
         \draw[line] (check) -- node[right, font=\scriptsize] {Ja} (analyze);
-        \draw[line] (check.west) -- ++(-1.2,0) |- node[pos=0.25, above, font=\scriptsize] {Nein} (capture.north);
+        \draw[line] (check.west) -- ++(-1.2,0) -| node[pos=0.25, above, font=\scriptsize] {Nein} (capture.north);
         \draw[line] (capture.east) -- ++(1.1,0) |- (analyze.west);
         \draw[line] (analyze) -- (result);
         \draw[line] (result) -- (end);
