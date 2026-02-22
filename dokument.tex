@@ -38,6 +38,8 @@
 \usepackage{makecell} % Im Header Ihrer LaTeX-Datei einfügen
 \usepackage{slantsc}
 \usepackage{caption}
+% Caption-Package so konfigurieren, dass vollständige Nummerierung in Verzeichnissen verwendet wird
+\captionsetup{listformat=simple}
 \usepackage{multirow}
 \usepackage[active]{srcltx}
 %\usepackage[activate=normal]{pdfcprot} % Optischer Randausgleich -> pdflatex!
@@ -75,7 +77,7 @@
 \usepackage[htt]{hyphenat} % Erlaubt Silbentrennung in \texttt{} (Typewriter)
 
 % Zitate, Quotes, Cite
-\usepackage[backend=biber, sorting=nyt, style=ieee-alphabetic, minalphanames=1, maxbibnames=99]{biblatex}
+\usepackage[backend=bibtex, sorting=nyt, style=ieee-alphabetic, minalphanames=1, maxbibnames=99]{biblatex}
 \addbibresource{bib/literatur.bib}  % Pfad zur Literaturdatenbank
 
 \DeclareLabelalphaTemplate{
@@ -178,6 +180,11 @@
 \renewcommand\thefigure{\thechapter.\@arabic\c@figure}
 \renewcommand\thetable{\thechapter.\@arabic\c@table}
 \makeatother
+
+% Formatierung für Verzeichnisse: vollständige Nummerierung anzeigen
+% KOMA-Script bietet spezielle Befehle für die Verzeichnisformatierung
+\DeclareTOCStyleEntry[numwidth=2.5em]{tocline}{figure}
+\DeclareTOCStyleEntry[numwidth=2.5em]{tocline}{table}
 
 % Quelltextrahmen, klein. Hier nichts ändern!
 \newsavebox{\inhaltkl}
