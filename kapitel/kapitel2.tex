@@ -58,3 +58,46 @@ def hello_world():
 \end{lstlisting}
 
 Referenz auf das Codebeispiel: \ref{code:python}.
+
+\section{Mermaid-Diagramm}
+Mermaid-Diagramme koennen als Quelltext dokumentiert und als Diagramm dargestellt werden.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[
+        >={Stealth[length=3mm]},
+        line/.style={draw=black!70, thick, ->},
+        term/.style={draw=teal!60!black, fill=teal!15, rounded corners=2pt, minimum width=3.0cm, minimum height=0.9cm, align=center, font=\small},
+        process/.style={draw=blue!60!black, fill=blue!10, rounded corners=2pt, minimum width=3.4cm, minimum height=0.95cm, align=center, font=\small},
+        inputstep/.style={draw=violet!60!black, fill=violet!10, rounded corners=2pt, minimum width=3.2cm, minimum height=0.95cm, align=center, font=\small},
+        decision/.style={draw=orange!70!black, fill=orange!20, diamond, aspect=2.2, minimum width=3.4cm, minimum height=1.2cm, align=center, inner sep=1pt, font=\small}
+    ]
+        \node[term] (start) at (0,0) {Start};
+        \node[decision] (check) at (0,-2.0) {Daten vorhanden?};
+        \node[process] (analyze) at (0,-4.2) {Analyse starten};
+        \node[inputstep] (capture) at (-4.6,-4.2) {Daten erfassen};
+        \node[process] (result) at (0,-6.2) {Ergebnis dokumentieren};
+        \node[term] (end) at (0,-8.1) {Ende};
+
+        \draw[line] (start) -- (check);
+        \draw[line] (check) -- node[right, font=\scriptsize] {Ja} (analyze);
+        \draw[line] (check.west) -- ++(-1.2,0) |- node[pos=0.25, above, font=\scriptsize] {Nein} (capture.north);
+        \draw[line] (capture.east) -- ++(1.1,0) |- (analyze.west);
+        \draw[line] (analyze) -- (result);
+        \draw[line] (result) -- (end);
+    \end{tikzpicture}
+    \caption{Gerendertes Mermaid-Beispiel im Farbschema (Flowchart)}
+    \label{fig:mermaid}
+\end{figure}
+
+\begin{lstlisting}[language={}, caption={Mermaid-Beispiel (Flowchart)}, label={code:mermaid}]
+flowchart TD
+    A[Start] --> B{Daten vorhanden?}
+    B -->|Ja| C[Analyse starten]
+    B -->|Nein| D[Daten erfassen]
+    D --> C
+    C --> E[Ergebnis dokumentieren]
+    E --> F[Ende]
+\end{lstlisting}
+
+Referenz auf das gerenderte Diagramm: \ref{fig:mermaid}. Referenz auf die Mermaid-Quelle: \ref{code:mermaid}.

@@ -45,15 +45,22 @@
 %\usepackage[activate=normal]{pdfcprot} % Optischer Randausgleich -> pdflatex!
 \usepackage{ifthen}
 \usepackage[ngerman]{babel}   % Neue Deutsche Rechtschreibung
+\usepackage{iftex}
+\ifPDFTeX
 %\usepackage[latin1]{inputenc} % Zeichencodierung nach ISO-8859-1
-\usepackage[utf8]{inputenc}   %	Zeichencodierung nach UTF-8 (Unicode)
+\usepackage[utf8]{inputenc}   % Zeichencodierung nach UTF-8 (Unicode)
 \usepackage[T1]{fontenc}
 %\usepackage{ae} % obsolet und durch lmodern ersetzt
 \usepackage{lmodern}
+\else
+\usepackage{fontspec}
+\fi
 \usepackage{microtype} % Bessere Silbentrennung, Zeichenprotrusion, weniger Overfull/Underfull
 \usepackage{parskip}   % Absätze durch Abstand statt Einrückung trennen (wie in Word)
 \usepackage[T1]{url}
 \usepackage[final]{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,shapes.geometric}
 \usepackage{float}         % Option H für exakte Float-Positionierung
 \usepackage[section]{placeins} % Verhindert, dass Floats die Sektion verlassen
 \usepackage{needspace}     % Reserviert Platz, um Überschrift + Inhalt zusammenzuhalten
@@ -62,7 +69,6 @@
 \usepackage[printonlyused]{acronym}
 %\usepackage[first,light]{draftcopy} % Für Probedruck
 \usepackage[plainpages=false,pdfpagelabels,hypertexnames=false]{hyperref}
-\usepackage[T1]{fontenc} % Schriftkodierung mit T1
 
 \usepackage[ngerman]{babel}  % Für deutsche Spracheinstellungen
 \usepackage{datetime}        % Für Datumsformatierung
