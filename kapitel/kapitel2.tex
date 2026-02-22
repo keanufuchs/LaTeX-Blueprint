@@ -1,129 +1,137 @@
 \ihead{LaTeX Beispiele}
-\chapter{Beispiele für LaTeX-Elemente}
+\chapter{Beispiele innerhalb der LaTeX-Vorlage}
 
-Dieses Kapitel demonstriert die Verwendung häufiger Elemente in wissenschaftlichen Arbeiten.
+Dieses Kapitel zeigt typische Elemente, die in dieser LaTeX-Vorlage bereits vorbereitet sind.
 
 \section{Zitate und Literaturverzeichnis}
-Zitate sind essentiell für wissenschaftliches Arbeiten.
+Das Literaturmanagement ist in der Vorlage vorkonfiguriert. Beispielzitate:
 \begin{itemize}
-    \item Ein Buch zitieren: \cite{mustermann2023}.
-    \item Einen Artikel zitieren: \cite{doe2024}.
-    \item Eine Webseite zitieren: \cite{latexproject}.
+    \item Leitfaden zum wissenschaftlichen Schreiben mit LaTeX: \cite{mustermann2023}.
+    \item Beispielartikel zur Vorlagenarbeit: \cite{doe2024}.
+    \item Offizielle Projektseite von LaTeX: \cite{latexproject}.
 \end{itemize}
-Das Literaturverzeichnis wird automatisch basierend auf den zitierten Werken erstellt.
+Das Literaturverzeichnis wird aus der Datei \texttt{bib/literatur.bib} automatisch erzeugt.
 
 \section{Abkürzungen (Akronyme)}
-Abkürzungen sollten bei der ersten Verwendung ausgeschrieben werden. Das \texttt{acronym}-Paket übernimmt dies automatisch.
+Abkürzungen werden zentral in \texttt{meta/abkuerzungsverzeichnis.tex} gepflegt und im Text mit dem \texttt{acronym}-Paket verwendet:
 \begin{itemize}
-    \item Erste Verwendung: \ac{API}.
-    \item Zweite Verwendung: \ac{API}.
-    \item Plural: \acp{API}.
-    \item Ein weiteres Beispiel: \ac{REST}.
+    \item Erste Verwendung von \ac{LATEX}.
+    \item Literaturarbeit mit \ac{BIBTEX}.
+    \item Ausgabeformat der Arbeit: \ac{PDF}.
+    \item Automatisch erzeugte Verzeichnisse: \ac{TOC}, \ac{LOF}, \ac{LOT}, \ac{LOL}.
 \end{itemize}
-Die Definitionen befinden sich in \texttt{meta/abkuerzungsverzeichnis.tex}.
 
 \section{Abbildungen}
-Abbildungen werden mit der \texttt{figure}-Umgebung eingebunden. Referenzieren Sie immer auf die Abbildung im Text (siehe Abbildung \ref{fig:beispiel}).
+Abbildungen werden in der \texttt{figure}-Umgebung eingefügt. Ein Beispiel zeigt Abbildung \ref{fig:beispiel}.
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{bilder/Beispiel-Diagramm.png}
-    \caption{Ein beispielhaftes Diagramm}
+    \caption{Beispielabbildung in der LaTeX-Vorlage}
     \label{fig:beispiel}
 \end{figure}
 
 \section{Tabellen}
-Tabellen können einfach oder komplex sein. Tabelle \ref{tab:beispiel} zeigt ein einfaches Beispiel.
+Tabelle \ref{tab:beispiel} zeigt eine einfache tabellarische Darstellung.
 
-\begin{table}[ht]
+\begin{table}[H]
     \centering
     \begin{tabular}{|l|c|r|}
         \hline
-        \textbf{Links} & \textbf{Zentriert} & \textbf{Rechts} \\
+        \textbf{Element} & \textbf{Anzahl} & \textbf{Status} \\
         \hline
-        Wert A & 123 & 10,50 \\
-        Wert B & 456 & 20,00 \\
+        Kapiteldateien & 2 & aktiv \\
+        Anhangsdateien & 7 & vorbereitet \\
         \hline
     \end{tabular}
-    \caption{Eine Beispieltabelle}
+    \caption{Einfache Beispieltabelle}
     \label{tab:beispiel}
 \end{table}
 
-Tabelle \ref{tabelle:nutzwertanalyse_backend} zeigt ein komplexeres Beispiel als Nutzwertanalyse.
+Tabelle \ref{tabelle:nutzwertanalyse_diagramme} zeigt ein komplexeres Beispiel als Nutzwertanalyse für Diagrammoptionen innerhalb dieser LaTeX-Vorlage.
 
-\begin{table}[ht]
+\begin{table}[H]
     \begin{center}
     \scriptsize
     \begin{tabular}{|c|c|c|c|c|c|c|c|}
             \hline
-            \multirow{2}{*}{Kriterien} & \multirow{2}{*}{Gewichtung} & \multicolumn{2}{c|}{\makecell{Flask}} & \multicolumn{2}{c|}{\makecell{FastAPI}} & \multicolumn{2}{c|}{\makecell{Django}} \\
+            \multirow{2}{*}{Kriterien} & \multirow{2}{*}{Gewichtung} & \multicolumn{2}{c|}{\makecell{PNG/JPG}} & \multicolumn{2}{c|}{\makecell{TikZ}} & \multicolumn{2}{c|}{\makecell{Mermaid \\ (extern)}} \\
             \cline{3-8}
              &  & Bew. & Ges. & Bew. & Ges. & Bew. & Ges. \\
             \hline
-            \makecell{Einarbeitungszeit} & 25\% & 5 & 1,25 & 3 & 0,75 & 2 & 0,50 \\
-            \makecell{Performance} & 20\% & 3 & 0,60 & 5 & 1,00 & 3 & 0,60 \\
-            \makecell{Flexibilität} & 25\% & 5 & 1,25 & 4 & 1,00 & 2 & 0,50 \\
-            \makecell{Dokumentation} & 15\% & 4 & 0,60 & 5 & 0,75 & 4 & 0,60 \\
-            \makecell{Community- \\ Unterstützung} & 15\% & 4 & 0,60 & 3 & 0,45 & 4 & 0,60 \\
+            \makecell{Einrichtungsaufwand} & 20\% & 5 & 1,00 & 3 & 0,60 & 4 & 0,80 \\
+            \makecell{Typografische \\ Konsistenz} & 25\% & 2 & 0,50 & 5 & 1,25 & 4 & 1,00 \\
+            \makecell{Anpassbarkeit im \\ Quelltext} & 25\% & 1 & 0,25 & 5 & 1,25 & 4 & 1,00 \\
+            \makecell{Kompilier- \\ geschwindigkeit} & 15\% & 5 & 0,75 & 2 & 0,30 & 3 & 0,45 \\
+            \makecell{Wiederverwendbarkeit} & 15\% & 3 & 0,45 & 4 & 0,60 & 5 & 0,75 \\
             \hline
-            GESAMT & 100\% & - & 4,30 & - & 3,95 & - & 2,80 \\
+            GESAMT & 100\% & - & 2,95 & - & 4,00 & - & 4,00 \\
             \hline
     \end{tabular}
     \end{center}
-    \caption{Nutzwertanalyse der Backend-Frameworks}
-    \label{tabelle:nutzwertanalyse_backend}
+    \caption{Nutzwertanalyse für Diagrammoptionen in der LaTeX-Vorlage}
+    \label{tabelle:nutzwertanalyse_diagramme}
 \end{table}
 
 \section{Quellcode}
-Für Quellcode eignet sich das \texttt{listings}-Paket.
+Für Quellcodebeispiele ist das \texttt{listings}-Paket eingebunden.
 
-\begin{lstlisting}[language=Python, caption={Ein Python-Beispiel}, label={code:python}]
-def hello_world():
-    print("Hello, LaTeX Template!")
+\begin{lstlisting}[language=Python, caption={Beispielhafter Build-Ablauf fuer die LaTeX-Vorlage}, label={code:python}]
+import subprocess
+
+steps = [
+    "pdflatex dokument.tex",
+    "bibtex dokument",
+    "pdflatex dokument.tex",
+    "pdflatex dokument.tex",
+]
+
+for step in steps:
+    subprocess.run(step, shell=True, check=True)
 \end{lstlisting}
 
 Referenz auf das Codebeispiel: \ref{code:python}.
 
 \section{Mermaid-Diagramm}
-Mermaid-Diagramme koennen als Quelltext dokumentiert und als Diagramm dargestellt werden.
+Mermaid-Diagramme koennen als Quelltext dokumentiert und als Abbildungen inhaltlich gespiegelt werden.
 
 \subsection{Flowchart}
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \begin{tikzpicture}[
         >={Stealth[length=3mm]},
         line/.style={draw=black!70, thick, ->},
         term/.style={draw=teal!60!black, fill=teal!15, rounded corners=2pt, minimum width=3.0cm, minimum height=0.9cm, align=center, font=\small},
-        process/.style={draw=blue!60!black, fill=blue!10, rounded corners=2pt, minimum width=3.4cm, minimum height=0.95cm, align=center, font=\small},
-        inputstep/.style={draw=violet!60!black, fill=violet!10, rounded corners=2pt, minimum width=3.2cm, minimum height=0.95cm, align=center, font=\small},
-        decision/.style={draw=orange!70!black, fill=orange!20, diamond, aspect=2.2, minimum width=3.4cm, minimum height=1.2cm, align=center, inner sep=1pt, font=\small}
+        process/.style={draw=blue!60!black, fill=blue!10, rounded corners=2pt, minimum width=3.6cm, minimum height=0.95cm, align=center, font=\small},
+        inputstep/.style={draw=violet!60!black, fill=violet!10, rounded corners=2pt, minimum width=3.4cm, minimum height=0.95cm, align=center, font=\small},
+        decision/.style={draw=orange!70!black, fill=orange!20, diamond, aspect=2.2, minimum width=3.6cm, minimum height=1.2cm, align=center, inner sep=1pt, font=\small}
     ]
         \node[term] (start) at (0,0) {Start};
-        \node[decision] (check) at (0,-2.0) {Daten vorhanden?};
-        \node[process] (analyze) at (0,-4.2) {Analyse starten};
-        \node[inputstep] (capture) at (-4.6,-4.2) {Daten erfassen};
-        \node[process] (result) at (0,-6.2) {Ergebnis dokumentieren};
+        \node[decision] (check) at (0,-2.0) {Quellen aktuell?};
+        \node[process] (compile) at (0,-4.2) {PDF kompilieren};
+        \node[inputstep] (update) at (-4.9,-4.2) {Bib-Datei ergaenzen};
+        \node[process] (review) at (0,-6.2) {Ergebnis pruefen};
         \node[term] (end) at (0,-8.1) {Ende};
 
         \draw[line] (start) -- (check);
-        \draw[line] (check) -- node[right, font=\scriptsize] {Ja} (analyze);
-        \draw[line] (check.west) -- ++(-1.2,0) -| node[pos=0.25, above, font=\scriptsize] {Nein} (capture.north);
-        \draw[line] (capture.east) -- ++(1.1,0) |- (analyze.west);
-        \draw[line] (analyze) -- (result);
-        \draw[line] (result) -- (end);
+        \draw[line] (check) -- node[right, font=\scriptsize] {Ja} (compile);
+        \draw[line] (check.west) -- ++(-1.2,0) -| node[pos=0.25, above, font=\scriptsize] {Nein} (update.north);
+        \draw[line] (update.east) -- ++(1.1,0) |- (compile.west);
+        \draw[line] (compile) -- (review);
+        \draw[line] (review) -- (end);
     \end{tikzpicture}
-    \caption{Gerendertes Mermaid-Beispiel im Farbschema (Flowchart)}
+    \caption{Gerendertes Mermaid-Beispiel (Flowchart fuer den Build-Prozess)}
     \label{fig:mermaid}
 \end{figure}
 
-\begin{lstlisting}[language={}, caption={Mermaid-Beispiel (Flowchart)}, label={code:mermaid}]
+\begin{lstlisting}[language={}, caption={Mermaid-Beispiel (Flowchart fuer den Build-Prozess)}, label={code:mermaid}]
 flowchart TD
-    A[Start] --> B{Daten vorhanden?}
-    B -->|Ja| C[Analyse starten]
-    B -->|Nein| D[Daten erfassen]
+    A[Start] --> B{Quellen aktuell?}
+    B -->|Ja| C[PDF kompilieren]
+    B -->|Nein| D[Bib-Datei ergaenzen]
     D --> C
-    C --> E[Ergebnis dokumentieren]
+    C --> E[Ergebnis pruefen]
     E --> F[Ende]
 \end{lstlisting}
 
@@ -131,7 +139,7 @@ Referenz auf das gerenderte Diagramm: \ref{fig:mermaid}. Referenz auf die Mermai
 
 \subsection{Gantt-Diagramm mit Meilensteinen}
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \begin{ganttchart}[
         hgrid,
@@ -150,15 +158,15 @@ Referenz auf das gerenderte Diagramm: \ref{fig:mermaid}. Referenz auf die Mermai
         \gantttitle{Projektzeitraum (Wochen)}{10} \\
         \gantttitlelist{1,...,10}{1} \\
         \ganttgroup{Planung}{1}{2} \\
-        \ganttbar[bar/.append style={fill=violet!12, draw=violet!70!black}]{Anforderungen}{1}{2} \\
-        \ganttgroup{Umsetzung}{3}{8} \\
-        \ganttbar{Backend-Entwicklung}{3}{5} \\
-        \ganttbar{Frontend-Integration}{6}{7} \\
-        \ganttbar[bar/.append style={fill=blue!20, draw=blue!75!black}]{Tests}{8}{8} \\
-        \ganttgroup{Abschluss}{9}{10} \\
-        \ganttbar[bar/.append style={fill=teal!12, draw=teal!70!black}]{Dokumentation}{9}{10} \\
-        \ganttmilestone{MS: MVP}{5} \\
-        \ganttmilestone{MS: Abnahme}{10}
+        \ganttbar[bar/.append style={fill=violet!12, draw=violet!70!black}]{Struktur festlegen}{1}{2} \\
+        \ganttgroup{Schreibphase}{3}{8} \\
+        \ganttbar{Kapitelentwurf}{3}{6} \\
+        \ganttbar{Abbildungen und Tabellen}{5}{7} \\
+        \ganttbar[bar/.append style={fill=blue!20, draw=blue!75!black}]{Quellen einarbeiten}{7}{8} \\
+        \ganttgroup{Finalisierung}{9}{10} \\
+        \ganttbar[bar/.append style={fill=teal!12, draw=teal!70!black}]{Layout- und Sprachcheck}{9}{10} \\
+        \ganttmilestone{MS: Rohfassung}{7} \\
+        \ganttmilestone{MS: Abgabe-PDF}{10}
     \end{ganttchart}
     \caption{Gerendertes Mermaid-Beispiel im passenden Farbschema (Gantt mit Meilensteinen)}
     \label{fig:mermaid-gantt}
@@ -166,21 +174,21 @@ Referenz auf das gerenderte Diagramm: \ref{fig:mermaid}. Referenz auf die Mermai
 
 \begin{lstlisting}[language={}, caption={Mermaid-Beispiel (Gantt mit Meilensteinen)}, label={code:mermaid-gantt}]
 gantt
-    title Projektplan mit Meilensteinen
+    title Schreib- und Build-Plan der LaTeX-Vorlage
     dateFormat  YYYY-MM-DD
     axisFormat  %W
 
     section Planung
-    Anforderungen        :a1, 2026-03-03, 14d
+    Struktur festlegen        :a1, 2026-03-03, 14d
 
-    section Umsetzung
-    Backend-Entwicklung  :a2, after a1, 21d
-    Frontend-Integration :a3, after a2, 14d
-    Tests                :a4, after a3, 7d
+    section Schreibphase
+    Kapitelentwurf            :a2, after a1, 28d
+    Abbildungen und Tabellen  :a3, after a2, 14d
+    Quellen einarbeiten       :a4, after a3, 7d
 
     section Meilensteine
-    MVP fertig           :milestone, m1, 2026-04-07, 0d
-    Abnahme              :milestone, m2, 2026-05-05, 0d
+    Rohfassung                :milestone, m1, 2026-04-21, 0d
+    Abgabe-PDF                :milestone, m2, 2026-05-05, 0d
 \end{lstlisting}
 
 Referenz auf das gerenderte Gantt-Diagramm: \ref{fig:mermaid-gantt}. Referenz auf die Mermaid-Quelle: \ref{code:mermaid-gantt}.

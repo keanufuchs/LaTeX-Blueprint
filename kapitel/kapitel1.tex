@@ -1,28 +1,36 @@
-\ihead{Anleitung zur Vorlage}
-\chapter{Anleitung zur Verwendung dieser Vorlage}
+\ihead{Anleitung zur LaTeX-Vorlage}
+\chapter{Anleitung zur LaTeX-Vorlage}
 
-Diese LaTeX-Vorlage dient als Basis für wissenschaftliche Hausarbeiten, Bachelor- und Masterarbeiten. Sie ist so konfiguriert, dass sie den typischen Anforderungen entspricht.
+Diese LaTeX-Vorlage ist eine einsatzbereite Arbeitsgrundlage für wissenschaftliche Arbeiten. Sie liefert eine klare Grundstruktur, einheitliche Formatierung und direkt nutzbare Beispiele für typische Inhalte wie Tabellen, Abbildungen, Code-Listings und Mermaid-Diagramme.
 
-\section{Struktur der Vorlage}
-Die Vorlage ist modular aufgebaut, um die Übersichtlichkeit zu wahren:
+\section{Wofür die LaTeX-Vorlage gedacht ist}
+Die LaTeX-Vorlage richtet sich an Hausarbeiten, Projektberichte, Bachelor- und Masterarbeiten. Ziel ist, dass Sie nicht bei Null starten müssen, sondern sofort mit einer sauberen Dokumentstruktur arbeiten koennen.
+
+\section{Projektstruktur}
+Die Dateien sind so organisiert, dass Inhalt und Konfiguration getrennt bleiben:
 
 \begin{itemize}
-    \item \texttt{dokument.tex}: Die Hauptdatei. Hier werden alle anderen Dateien eingebunden und globale Einstellungen (Metadaten) vorgenommen.
-    \item \texttt{meta/}: Enthält Dateien für den Vorspann (Titelblatt, Abstract, Verzeichnisse).
-    \item \texttt{kapitel/}: Hier liegen die eigentlichen Inhalte der Arbeit, unterteilt in Kapitel.
-    \item \texttt{anhang/}: Dateien für den Anhang (zusätzliche Abbildungen, Tabellen, Code).
-    \item \texttt{bib/}: Enthält die Literaturdatenbank (\texttt{literatur.bib}).
-    \item \texttt{bilder/}: Speicherort für alle Grafiken und Bilder.
+    \item \texttt{dokument.tex}: Hauptdatei mit Präambel, Metadaten und Einbindung aller Kapitel.
+    \item \texttt{meta/}: Vorspann (Titelblatt, Kurzfassung, Abkürzungsverzeichnis, Erklärungen).
+    \item \texttt{kapitel/}: Fachinhalt der Arbeit, kapitelweise getrennt.
+    \item \texttt{anhang/}: Anhangsinhalte wie zusätzliche Tabellen, Abbildungen und Code.
+    \item \texttt{bib/}: Literaturdatenbank für Zitate und Literaturverzeichnis.
+    \item \texttt{bilder/}: Grafiken und weitere visuelle Assets.
 \end{itemize}
 
-\section{Erste Schritte}
+\section{Schneller Einstieg}
 \begin{enumerate}
-    \item Öffnen Sie die Datei \texttt{dokument.tex}.
-    \item Passen Sie die Metadaten im oberen Bereich an (Autor, Titel, Matrikelnummer, etc.).
-    \item Bearbeiten Sie die Dateien im Ordner \texttt{meta/} (z.B. \texttt{kurzfassung.tex}, \texttt{abkuerzungsverzeichnis.tex}).
-    \item Schreiben Sie Ihren Text in den Dateien unter \texttt{kapitel/}. Sie können weitere Kapitel-Dateien anlegen und diese in \texttt{dokument.tex} mit \texttt{\textbackslash input\{kapitel/dateiname\}} einbinden.
-    \item Führen Sie das Kompilieren durch (in der Regel \texttt{pdflatex} -> \texttt{biber} -> \texttt{pdflatex} -> \texttt{pdflatex}).
+    \item Öffnen Sie \texttt{dokument.tex} und tragen Sie Ihre Metadaten ein.
+    \item Passen Sie die Inhalte in \texttt{meta/} an (z.B. Titelblatt und Abkürzungen).
+    \item Schreiben Sie den Fachtext in \texttt{kapitel/}.
+    \item Ergänzen Sie Abbildungen in \texttt{bilder/} und verweisen Sie im Text darauf.
+    \item Kompilieren Sie das Dokument (typisch: \texttt{pdflatex} $\rightarrow$ \texttt{bibtex} $\rightarrow$ \texttt{pdflatex} $\rightarrow$ \texttt{pdflatex}).
 \end{enumerate}
 
-\section{Vorgaben}
-Beachten Sie bitte die Datei \texttt{VORGABEN.md} im Hauptverzeichnis. Sie enthält detaillierte Hinweise zur inhaltlichen Struktur der Arbeit, orientiert am Referenzprojekt.
+\section{Was bereits vorbereitet ist}
+\begin{itemize}
+    \item Titelblatt, Inhaltsverzeichnis und Verzeichnisse für Abbildungen, Tabellen und Codebeispiele.
+    \item Abkürzungsverwaltung über das \texttt{acronym}-Paket.
+    \item Literaturverwaltung über \texttt{biblatex} mit vorhandener Beispiel-\texttt{.bib}-Datei.
+    \item Beispielinhalte in Kapitel 2, inklusive Nutzwertanalyse sowie Mermaid-Flowchart und Mermaid-Gantt.
+\end{itemize}
