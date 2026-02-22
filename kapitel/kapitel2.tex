@@ -49,6 +49,31 @@ Tabellen können einfach oder komplex sein. Tabelle \ref{tab:beispiel} zeigt ein
     \label{tab:beispiel}
 \end{table}
 
+Tabelle \ref{tabelle:nutzwertanalyse_backend} zeigt ein komplexeres Beispiel als Nutzwertanalyse.
+
+\begin{table}[ht]
+    \begin{center}
+    \scriptsize
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+            \hline
+            \multirow{2}{*}{Kriterien} & \multirow{2}{*}{Gewichtung} & \multicolumn{2}{c|}{\makecell{Flask}} & \multicolumn{2}{c|}{\makecell{FastAPI}} & \multicolumn{2}{c|}{\makecell{Django}} \\
+            \cline{3-8}
+             &  & Bew. & Ges. & Bew. & Ges. & Bew. & Ges. \\
+            \hline
+            \makecell{Einarbeitungszeit} & 25\% & 5 & 1,25 & 3 & 0,75 & 2 & 0,50 \\
+            \makecell{Performance} & 20\% & 3 & 0,60 & 5 & 1,00 & 3 & 0,60 \\
+            \makecell{Flexibilität} & 25\% & 5 & 1,25 & 4 & 1,00 & 2 & 0,50 \\
+            \makecell{Dokumentation} & 15\% & 4 & 0,60 & 5 & 0,75 & 4 & 0,60 \\
+            \makecell{Community- \\ Unterstützung} & 15\% & 4 & 0,60 & 3 & 0,45 & 4 & 0,60 \\
+            \hline
+            GESAMT & 100\% & - & 4,30 & - & 3,95 & - & 2,80 \\
+            \hline
+    \end{tabular}
+    \end{center}
+    \caption{Nutzwertanalyse der Backend-Frameworks}
+    \label{tabelle:nutzwertanalyse_backend}
+\end{table}
+
 \section{Quellcode}
 Für Quellcode eignet sich das \texttt{listings}-Paket.
 
@@ -61,6 +86,8 @@ Referenz auf das Codebeispiel: \ref{code:python}.
 
 \section{Mermaid-Diagramm}
 Mermaid-Diagramme koennen als Quelltext dokumentiert und als Diagramm dargestellt werden.
+
+\subsection{Flowchart}
 
 \begin{figure}[ht]
     \centering
@@ -101,3 +128,59 @@ flowchart TD
 \end{lstlisting}
 
 Referenz auf das gerenderte Diagramm: \ref{fig:mermaid}. Referenz auf die Mermaid-Quelle: \ref{code:mermaid}.
+
+\subsection{Gantt-Diagramm mit Meilensteinen}
+
+\begin{figure}[ht]
+    \centering
+    \begin{ganttchart}[
+        hgrid,
+        vgrid,
+        x unit=0.90cm,
+        y unit chart=0.70cm,
+        title/.append style={fill=teal!15, draw=teal!70!black, rounded corners=1pt},
+        title label font=\scriptsize\bfseries\color{teal!80!black},
+        group/.append style={fill=teal!20, draw=teal!70!black, rounded corners=1pt},
+        group label font=\scriptsize\bfseries\color{teal!80!black},
+        bar/.append style={fill=blue!12, draw=blue!65!black, rounded corners=1pt},
+        bar label font=\scriptsize,
+        milestone/.append style={fill=orange!70, draw=orange!90!black},
+        milestone label font=\scriptsize\bfseries\color{orange!90!black}
+    ]{1}{10}
+        \gantttitle{Projektzeitraum (Wochen)}{10} \\
+        \gantttitlelist{1,...,10}{1} \\
+        \ganttgroup{Planung}{1}{2} \\
+        \ganttbar[bar/.append style={fill=violet!12, draw=violet!70!black}]{Anforderungen}{1}{2} \\
+        \ganttgroup{Umsetzung}{3}{8} \\
+        \ganttbar{Backend-Entwicklung}{3}{5} \\
+        \ganttbar{Frontend-Integration}{6}{7} \\
+        \ganttbar[bar/.append style={fill=blue!20, draw=blue!75!black}]{Tests}{8}{8} \\
+        \ganttgroup{Abschluss}{9}{10} \\
+        \ganttbar[bar/.append style={fill=teal!12, draw=teal!70!black}]{Dokumentation}{9}{10} \\
+        \ganttmilestone{MS: MVP}{5} \\
+        \ganttmilestone{MS: Abnahme}{10}
+    \end{ganttchart}
+    \caption{Gerendertes Mermaid-Beispiel im passenden Farbschema (Gantt mit Meilensteinen)}
+    \label{fig:mermaid-gantt}
+\end{figure}
+
+\begin{lstlisting}[language={}, caption={Mermaid-Beispiel (Gantt mit Meilensteinen)}, label={code:mermaid-gantt}]
+gantt
+    title Projektplan mit Meilensteinen
+    dateFormat  YYYY-MM-DD
+    axisFormat  %W
+
+    section Planung
+    Anforderungen        :a1, 2026-03-03, 14d
+
+    section Umsetzung
+    Backend-Entwicklung  :a2, after a1, 21d
+    Frontend-Integration :a3, after a2, 14d
+    Tests                :a4, after a3, 7d
+
+    section Meilensteine
+    MVP fertig           :milestone, m1, 2026-04-07, 0d
+    Abnahme              :milestone, m2, 2026-05-05, 0d
+\end{lstlisting}
+
+Referenz auf das gerenderte Gantt-Diagramm: \ref{fig:mermaid-gantt}. Referenz auf die Mermaid-Quelle: \ref{code:mermaid-gantt}.
