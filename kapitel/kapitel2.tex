@@ -26,16 +26,18 @@ Abbildungen werden in der \texttt{figure}-Umgebung eingefügt. Ein Beispiel zeig
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{bilder/Beispiel-Diagramm.png}
+    \includegraphics[width=0.5\textwidth]{bilder/Schaevenstraße.jpg}
     \caption{Beispielabbildung in der LaTeX-Vorlage}
     \label{fig:beispiel}
 \end{figure}
 
 \section{Tabellen}
-Tabelle \ref{tab:beispiel} zeigt eine einfache tabellarische Darstellung.
+Die folgende Tabelle zeigt eine einfache tabellarische Darstellung.
 
 \begin{table}[H]
     \centering
+    \caption{Einfache Beispieltabelle}
+    \label{tab:beispiel}
     \begin{tabular}{|l|c|r|}
         \hline
         \textbf{Element} & \textbf{Anzahl} & \textbf{Status} \\
@@ -44,15 +46,15 @@ Tabelle \ref{tab:beispiel} zeigt eine einfache tabellarische Darstellung.
         Anhangsdateien & 7 & vorbereitet \\
         \hline
     \end{tabular}
-    \caption{Einfache Beispieltabelle}
-    \label{tab:beispiel}
 \end{table}
 
-Tabelle \ref{tabelle:nutzwertanalyse_diagramme} zeigt ein komplexeres Beispiel als Nutzwertanalyse für Diagrammoptionen innerhalb dieser LaTeX-Vorlage.
+Die anschließende Tabelle zeigt eine Nutzwertanalyse für Diagrammoptionen innerhalb dieser LaTeX-Vorlage.
 
 \begin{table}[H]
     \begin{center}
     \scriptsize
+    \caption{Nutzwertanalyse für Diagrammoptionen in der LaTeX-Vorlage}
+    \label{tabelle:nutzwertanalyse_diagramme}
     \begin{tabular}{|c|c|c|c|c|c|c|c|}
             \hline
             \multirow{2}{*}{Kriterien} & \multirow{2}{*}{Gewichtung} & \multicolumn{2}{c|}{\makecell{PNG/JPG}} & \multicolumn{2}{c|}{\makecell{TikZ}} & \multicolumn{2}{c|}{\makecell{Mermaid \\ (extern)}} \\
@@ -69,8 +71,6 @@ Tabelle \ref{tabelle:nutzwertanalyse_diagramme} zeigt ein komplexeres Beispiel a
             \hline
     \end{tabular}
     \end{center}
-    \caption{Nutzwertanalyse für Diagrammoptionen in der LaTeX-Vorlage}
-    \label{tabelle:nutzwertanalyse_diagramme}
 \end{table}
 
 \section{Quellcode}

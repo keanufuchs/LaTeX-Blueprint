@@ -39,7 +39,12 @@
 \usepackage{slantsc}
 \usepackage{caption}
 % Caption-Package so konfigurieren, dass vollständige Nummerierung in Verzeichnissen verwendet wird
-\captionsetup{listformat=simple}
+\captionsetup{listformat=simple,font=small,labelfont=bf}
+% Wissenschaftlicher Standard:
+% - Abbildungsunterschriften unter der Abbildung
+% - Tabellenüberschriften über der Tabelle
+\captionsetup[figure]{position=bottom,justification=raggedright,singlelinecheck=false}
+\captionsetup[table]{position=top,justification=raggedright,singlelinecheck=false}
 \usepackage{multirow}
 \usepackage[active]{srcltx}
 %\usepackage[activate=normal]{pdfcprot} % Optischer Randausgleich -> pdflatex!
@@ -80,6 +85,13 @@
 \newdateformat{german}{\twodigit{\THEDAY}.\twodigit{\THEMONTH}.\THEYEAR}
 \usepackage{url}  % For typesetting URLs if required
 \usepackage{xurl} % Besserer Zeilenumbruch für lange URLs und Pfade
+\usepackage{siunitx} % Einheitliche Zahlen- und Einheitenformatierung
+\sisetup{
+  locale=DE,
+  output-decimal-marker={,},
+  group-separator={.},
+  group-minimum-digits=4
+}
 
 \usepackage{verbatim} % Ermöglicht die Verwendung der verbatim-Umgebung
 %\usepackage{fontspec}
@@ -139,6 +151,12 @@
 
 % Eigene Befehle
 \newcommand{\uproman}[1]{\uppercase\expandafter{\romannumeral#1}}
+% Quellenangaben unter Abbildungen/Tabellen (wissenschaftlicher Standard)
+
+% Vermeidet Schusterjungen/Hurenkinder (einzelne Zeilen am Seitenanfang/-ende)
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
 
 % Hier in die zweite geschweifte Klammer jeweils
 % die persönlichen Daten und das Thema der Arbeit eintragen:
@@ -297,6 +315,13 @@ Codebeispiel-verzeichnis
 \pagenumbering{Alph}
 \renewcommand{\thepage}{A-\arabic{page}}
 \setcounter{page}{1}
+% Eigene Nummerierung fuer Objekte im Anhang: A.1, A.2, ...
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\setcounter{lstlisting}{0}
+\renewcommand{\thefigure}{A.\arabic{figure}}
+\renewcommand{\thetable}{A.\arabic{table}}
+\renewcommand{\thelstlisting}{A.\arabic{lstlisting}}
 
 \input{anhang/anhang_abbildungsverzeichnis.tex}
 
