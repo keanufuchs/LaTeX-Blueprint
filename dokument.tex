@@ -75,12 +75,19 @@
 \usepackage{needspace}     % Reserviert Platz, um Überschrift + Inhalt zusammenzuhalten
 \usepackage[automark]{scrlayer-scrpage}
 \usepackage{setspace}
-\usepackage[printonlyused]{acronym}
+\usepackage{acro}
+\acsetup{
+  list/display = used,
+  make-links = true
+}
+\input{meta/abkuerzungen.tex}
 %\usepackage[first,light]{draftcopy} % Für Probedruck
 \usepackage[plainpages=false,pdfpagelabels,hypertexnames=false]{hyperref}
-
 \usepackage[ngerman]{babel}  % Für deutsche Spracheinstellungen
 \usepackage{datetime}        % Für Datumsformatierung
+
+\usepackage{caption}
+\captionsetup{justification=centering}
 
 % Definiere ein neues Datumsformat
 \newdateformat{german}{\twodigit{\THEDAY}.\twodigit{\THEMONTH}.\THEYEAR}

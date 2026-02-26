@@ -1,0 +1,60 @@
+\NewAcroTemplate[list]{abkuerzungstabelle}{
+  \AcroNeedPackage{array}
+  \acronymsmapF{
+    \AcroAddRow{
+      \strut\acrowrite{short}
+      \acroifT{alt}{/}\acrowrite{alt}
+      &
+      \strut\acrowrite{list}
+      \acroifanyT{foreign,extra}{~(}
+      \acrowrite{foreign}
+      \acroifallT{foreign,extra}{,~}
+      \acrowrite{extra}
+      \acroifanyT{foreign,extra}{)}
+      \tabularnewline
+      \hline
+    }
+  }{\AcroRerun}
+  \acroheading
+  \acropreamble
+  \par
+  \begingroup
+  \renewcommand{\arraystretch}{1.15}
+  \noindent
+  \begin{tabular}{|>{\raggedright\arraybackslash\bfseries}p{.22\linewidth}|>{\raggedright\arraybackslash}p{.70\linewidth}|}
+    \hline
+    \textbf{\strut Abkürzung} & \textbf{\strut Bedeutung}\tabularnewline
+    \hline
+    \AcronymTable
+  \end{tabular}
+  \endgroup
+}
+
+\DeclareAcronym{LATEX}{
+  short = LATEX,
+  long = Makropaket fuer das Textsatzsystem TeX
+}
+\DeclareAcronym{BIBTEX}{
+  short = BIBTEX,
+  long = Literaturwerkzeug fuer LaTeX
+}
+\DeclareAcronym{PDF}{
+  short = PDF,
+  long = Portable Document Format
+}
+\DeclareAcronym{TOC}{
+  short = TOC,
+  long = Table of Contents
+}
+\DeclareAcronym{LOF}{
+  short = LOF,
+  long = List of Figures
+}
+\DeclareAcronym{LOT}{
+  short = LOT,
+  long = List of Tables
+}
+\DeclareAcronym{LOL}{
+  short = LOL,
+  long = List of Listings
+}
